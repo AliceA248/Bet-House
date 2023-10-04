@@ -1,3 +1,16 @@
+
+# Bet House - Quer apostar quanto?
+
+Apostar com os amigos no resultado de um jogo de futebol nunca sai de moda, mas nos últimos anos, essa tradição ganhou uma nova dimensão com o avanço da tecnologia. A aplicação back-end "Bet House" oferece uma plataforma emocionante e conveniente para apostas esportivas.
+
+Nessa aplicação uma série de eventos esportivos que vão acontecer aparecem para o usuário. Ele pode fazer uma aposta dentro de um evento esportivo (por exemplo, em quem será o vencedor entre uma partida de futebol do Flamengo contra o Botafogo).
+
+O evento esportivo acontece e, caso o usuário tenha acertado, recebe um valor!!
+
+Abrace a empolgação, faça suas apostas e torça pelo sucesso de sua equipe favorita!
+
+
+
 creating a volume
 
 ```docker volume create volume-name ```
