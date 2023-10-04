@@ -2,30 +2,29 @@ import { PrismaClient } from '@prisma/client';
 import { BetInput, BetResult } from '../protocols';
 import { prisma } from '../config';
 
-function create(data:BetInput){
-	return prisma.$transaction([
-		prisma.bet.create({data}),
-		prisma.participant.update({
-			where:{
-				id: data.participantId,
-			},
-			data:{
-				balance: {
-					decrement: data.amountBet
-				}
-			}
-		})
-	]);
+
+async function create(data: BetInput) {
+  const transaction = [
+    prisma.bet.create({ data }),
+    prisma.participant.update({
+      where: { id: data.participantId },
+      data: { balance: { decrement: data.amountBet } },
+    }),
+  ];
+
+  return prisma.$transaction(transaction);
 }
 
-function update(id:number, result:BetResult, prispaTransaction:PrismaClient){
-	return prispaTransaction.bet.update({
-		where: { id },
-		data: {...result}
-	});
+
+
+async function update(id: number, result: BetResult, prismaTransaction: PrismaClient) {
+  return prismaTransaction.bet.update({
+    where: { id },
+    data: { ...result },
+  });
 }
 
 export const betRepository = {
-	create,
-	update
+  create,
+  update,
 };
