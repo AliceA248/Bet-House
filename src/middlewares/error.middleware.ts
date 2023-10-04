@@ -13,9 +13,7 @@ export function handleApplicationErrors(
   const errorMessage = err.message || 'Internal Server Error';
   const errorStatus = Errors[err.name] || httpStatus.INTERNAL_SERVER_ERROR;
 
-  if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-    console.error({ message: errorMessage, status: errorStatus });
-  }
+  console.error({ message: errorMessage, status: errorStatus });
 
   res.status(errorStatus).send({ message: errorMessage, status: errorStatus });
 }

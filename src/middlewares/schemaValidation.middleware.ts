@@ -1,24 +1,25 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { ObjectSchema } from 'joi';
+import { ObjectSchema, ValidationError } from 'joi';
 import { invalidDataError } from '../errors';
 
 export function validateBody<T>(schema: ObjectSchema<T>): ValidationMiddleware {
-	return validate(schema, 'body');
+  return validate(schema, 'body');
 }
 
-function validate(schema: ObjectSchema, type: 'body' | 'params') {
-	return (req: Request, res: Response, next: NextFunction) => {
-		const { error } = schema.validate(req[type], {
-			abortEarly: false,
-		});
+function validate(schema: ObjectSchema, type: 'body' | 'params'): ValidationMiddleware {
+  return (req, res, next) => {
+    const { error } = schema.validate(req[type], {
+      abortEarly: false,
+    });
 
-		if (!error) {
-			next();
-		} else {
-			res.status(httpStatus.UNPROCESSABLE_ENTITY).send(invalidDataError(error.details.map((d) => d.message)));
-		}
-	};
+    if (!error) {
+      return next();
+    }
+
+    const validationErrors = error.details.map((d) => d.message);
+    return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(invalidDataError(validationErrors));
+  };
 }
 
 type ValidationMiddleware = (req: Request, res: Response, next: NextFunction) => void;
