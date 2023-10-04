@@ -3,6 +3,11 @@ import httpStatus from 'http-status';
 
 const healthRouter = Router();
 
-healthRouter.get('',(_req:Request, res:Response)=> res.send({message:'I\'m okay!', status:httpStatus.OK}) );
+// Rota para verificar a saúde do serviço
+healthRouter.get('', (_req: Request, res: Response) => {
+  const message = "I'm okay!";
+  const status = httpStatus.OK;
+  res.status(status).send({ message, status });
+});
 
 export { healthRouter };
