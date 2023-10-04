@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { GameInput, GameUpdate } from '../protocols';
 
-export const inputGameSchema = Joi.object<GameInput>({
+export const gameSchema = Joi.object<GameInput>({
 	awayTeamName: Joi.string().required(),
 	homeTeamName: Joi.string().required()
 });
