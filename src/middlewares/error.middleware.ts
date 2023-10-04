@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { Errors } from '../errosConst/erros';
+import { Errors } from '../constants';
 import { ApplicationError, GenericError } from '../protocols';
 import 'dotenv/config';
 

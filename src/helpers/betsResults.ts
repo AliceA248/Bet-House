@@ -6,11 +6,11 @@ export function betsResultsCalculator(bets:Bet[], data:GameUpdate){
 		(totals, bet) => {
 			const won = (data.awayTeamScore === bet.awayTeamScore ) && (data.homeTeamScore === bet.homeTeamScore);
 			return {
-				allBetsAmount: totals.allBetsAmount + bet.amountBet,
-				allWinnerBetsAmount: totals.allWinnerBetsAmount + (won ? bet.amountBet : 0),
+				allBets: totals.allBets + bet.amountBet,
+				allWinnerBets: totals.allWinnerBets + (won ? bet.amountBet : 0),
 			};
 		},
-		{ allBetsAmount: 0, allWinnerBetsAmount: 0 }
+		{ allBets: 0, allWinnerBets: 0 }
 	);
 
 }
