@@ -4,32 +4,31 @@ import { errorHandler } from '../errors';
 import { BetInput } from '../protocols';
 import { betRepository } from '../repositories';
 
-async function create(body:BetInput){
-	const {participantId, gameId} = body;
+async function create(body: BetInput) {
+  const { participantId, gameId, amountBet } = body;
 
-	const [participant, game] = await Promise.all([
-		participantServices.findOne(participantId),
-		gameServices.findOne(gameId)
-	]);
+  const [participant, game] = await Promise.all([
+    participantServices.findOne(participantId),
+    gameServices.findOne(gameId),
+  ]);
 
-	if(game.isFinished){
-		throw errorHandler({
-			message:'Este jogo já foi finalizado!',
-			name:'BadRequestError'
-		});
-	}
+  if (game.isFinished) {
+    throw errorHandler({
+      message: 'Não é possível fazer a aposta, pois este jogo já foi finalizado.',
+      name: 'BadRequestError'
+    });
+  }
 
-	if(body.amountBet > participant.balance){
-		throw errorHandler({
-			message:'Você não tem dinheiro suficiente para fazer esta aposta! Tente apostar um valor menor!',
-			name:'BadRequestError'
-		});
-	}
+  if (amountBet > participant.balance) {
+    throw errorHandler({
+      message: 'Você não possui saldo suficiente para realizar esta aposta. Por favor, tente com um valor menor.',
+      name: 'BadRequestError'
+    });
+  }
 
-
-	return betRepository.create(body);
+  return betRepository.create(body);
 }
 
 export const betServices = {
-	create
+  create
 };

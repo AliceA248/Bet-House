@@ -11,7 +11,7 @@ async function update(id:number,body:GameUpdate){
 
 	if(game.isFinished){
 		throw errorHandler({
-			message:'Este jogo já foi finalizado!',
+			message:'Este jogo foi finalizado',
 			name:'BadRequestError'
 		});
 	}

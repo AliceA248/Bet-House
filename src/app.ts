@@ -1,22 +1,23 @@
-import 'express-async-errors';
 import express, { Express } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
-import { loadEnv, connectDb, disconnectDB } from './config';
 import { betRouter, gameRouter, healthRouter, participantRouter } from './routers';
 import { handleApplicationErrors } from './middlewares';
+import { loadEnv, connectDb, disconnectDB } from './config';
+
 
 loadEnv();
 
 const app = express();
 
-app
-	.use(cors())
-	.use(express.json())
-	.use('/health', healthRouter)
-	.use('/participants', participantRouter)
-	.use('/games', gameRouter)
-	.use('/bets', betRouter)
-	.use(handleApplicationErrors)
+
+app.use(cors())
+app.use(express.json())
+app.use('/health', healthRouter)
+app.use('/participants', participantRouter)
+app.use('/games', gameRouter)
+app.use('/bets', betRouter)
+app.use(handleApplicationErrors)
 ;
 
 

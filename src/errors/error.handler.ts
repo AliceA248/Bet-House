@@ -5,3 +5,4 @@ export function errorHandler({ message, name}: GenericError): GenericError{
 		message, name
 	};
 }
+

@@ -15,7 +15,7 @@ async function findOne(id:number){
 
 	if(!participant){
 		throw errorHandler({
-			message: 'Este participante não está registrado!',
+			message: 'Erro, este participante não está registrado!',
 			name:'BadRequestError'
 		});
 	}
