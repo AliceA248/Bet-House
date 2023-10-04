@@ -1,15 +1,15 @@
 import httpStatus from 'http-status';
 import { ApplicationError } from '../protocols';
 
-export function invalidDataError(details: string[]): ApplicationInvalidateDataError {
-	return {
-		name: 'InvalidDataError',
-		message: 'Invalid data',
-		details,
-		status:httpStatus.UNPROCESSABLE_ENTITY
-	};
+interface ApplicationInvalidDataError extends ApplicationError {
+  details: string[];
 }
 
-type ApplicationInvalidateDataError = ApplicationError & {
-  details: string[];
-};
+export function invalidDataError(details: string[]): ApplicationInvalidDataError {
+  return {
+    name: 'InvalidDataError',
+    message: 'Invalid data',
+    status: httpStatus.UNPROCESSABLE_ENTITY,
+    details: details
+  };
+}
