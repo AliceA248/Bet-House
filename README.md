@@ -9,10 +9,19 @@ O evento esportivo acontece e, caso o usuário tenha acertado, recebe um valor!!
 
 Abrace a empolgação, faça suas apostas e torça pelo sucesso de sua equipe favorita!
 
-
+Deploy : https://bet-house-pnjb.onrender.com
 
 creating a volume
 
+## Tecnologias
+<p>
+<img src="https://img.shields.io/badge/-Javascript-F7DF1E?logo=javascript&logoColor=white"  alt="JavaScript" width="100" height="30">
+<img src="https://img.shields.io/badge/-Node-339933?logo=nodedotjs&logoColor=white" width="80" height="30">
+<img src="https://img.shields.io/badge/-Typescript-3178C6?logo=typescript&logoColor=white" width="100" height="30">
+<img src="https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white" width="100" height="30">
+<img src="https://img.shields.io/badge/-Prisma-2D3748?logo=prisma&logoColor=white" width="80" height="30">
+
+</p>
 ```docker volume create volume-name ```
 
 creating a network
